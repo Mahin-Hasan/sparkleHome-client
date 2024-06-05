@@ -4,6 +4,8 @@ import About from "../page/About";
 import Contact from "../page/Contact";
 import Login from "../page/Login";
 import Register from "../page/Register";
+import AdminLayout from "../components/layout/AdminLayout";
+import AddService from "../page/AddService";
 
 
 const routes = createBrowserRouter([
@@ -19,7 +21,7 @@ const routes = createBrowserRouter([
                 path: 'contact',
                 element: <Contact />
             },
-        ]
+        ],
     },
     {
         path: '/login',
@@ -29,6 +31,17 @@ const routes = createBrowserRouter([
         path: '/register',
         element: <Register/>
     },
+    {
+        path: '/admin',
+        element: <AdminLayout/>,
+        children: [
+            {
+                path: 'addService',
+                element: <AddService/>
+            },
+        ],
+    },
 ]);
 
+// For main route / should be given || for children directly type route name ex 'about' 
 export default routes;
