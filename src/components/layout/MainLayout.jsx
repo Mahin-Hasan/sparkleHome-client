@@ -1,4 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import NavbarMenu from "./NavbarMenu";
+import Sidebar from "./Sidebar";
+import Container from "../ui/Container";
 
 /* eslint-disable react/prop-types */
 const MainLayout = ({ children }) => {
@@ -8,22 +11,17 @@ const MainLayout = ({ children }) => {
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
                 <div className="w-full navbar bg-indigo-500">
-                    <div className="w-full max-w-[1200px] mx-auto">
+                    <Container>
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-                        <div className="flex-1 px-2 mx-2">Navbar Title</div>
+                        <div className="flex-1 text-2xl font-semibold text-white"><Link to='/'>Sparkle Home</Link></div>
                         <div className="flex-none hidden lg:block">
-                            <div className="flex gap-2">
-                                {/* Navbar menu content here */}
-                                <NavLink to='/about' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>About</NavLink>
-                                <NavLink to='/contact' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Contact</NavLink>
-                                <NavLink to='/login' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Login</NavLink>
-                            </div>
+                            <NavbarMenu />
                         </div>
-                    </div>
+                    </Container>
                 </div>
                 {/* Page content here */}
                 {children}
@@ -32,12 +30,7 @@ const MainLayout = ({ children }) => {
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full glass">
                     {/* Sidebar content here */}
-                    <div className="flex flex-col gap-2">
-                        {/* Navbar menu content here */}
-                        <NavLink to='/about' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>About</NavLink>
-                        <NavLink to='/contact' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Contact</NavLink>
-                        <NavLink to='/login' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Login</NavLink>
-                    </div>
+                    <Sidebar />
                 </ul>
             </div>
         </div>

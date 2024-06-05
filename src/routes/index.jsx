@@ -6,6 +6,7 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import AdminLayout from "../components/layout/AdminLayout";
 import AddService from "../page/AddService";
+import Home from "../page/Home";
 
 
 const routes = createBrowserRouter([
@@ -13,6 +14,10 @@ const routes = createBrowserRouter([
         path: '/',
         element: <App />,
         children: [
+            {
+                index: true, //to set default route when loaded initially
+                element: <Home />
+            },
             {
                 path: 'about',
                 element: <About />
@@ -36,7 +41,7 @@ const routes = createBrowserRouter([
         element: <AdminLayout/>,
         children: [
             {
-                path: 'addService',
+                index: true,
                 element: <AddService/>
             },
         ],
