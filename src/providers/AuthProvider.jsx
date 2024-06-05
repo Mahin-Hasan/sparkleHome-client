@@ -2,11 +2,11 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { useState, createContext, useEffect } from "react";
 import { auth } from "../config/firebase.config";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
+    const [isLoading, setIsLoading] = useState(null); // loading must be maintained throughout the application. or else the application will break and will redirect to the login page 
 
     const createUser = (email, password) => {
         setIsLoading(true)
@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
         const subscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setIsLoading(false);
+            console.log('Logged user', currentUser);
         })
 
         return () => {
