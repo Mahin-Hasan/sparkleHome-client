@@ -3,14 +3,20 @@ const express = require('express')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const jwt = require('jsonwebtoken')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
 const secret = 'willBeUsedInJwtToken'
+const port = 3000
 
 //parsers
 app.use(express.json())
 app.use(cookieParser())
-const port = 3000
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credendials: true
+})
+)
 
 
 const uri = "mongodb+srv://sparkleHome:1zSfaDNYByGXpsGI@cluster0.4lo48xa.mongodb.net/sparkleHome?retryWrites=true&w=majority&appName=Cluster0";
@@ -73,12 +79,19 @@ async function run() {
         app.get('/api/v1/user/bookings', gateman, async (req, res) => {
             const queryEmail = req.query.email;
             const tokenEmail = req.user.email;
-            //match user email to check if it is a valid user
-            console.log(queryEmail, tokenEmail);
-            if (queryEmail === tokenEmail) {
-                const result = await bookingCollection.findOne({ email: queryEmail })
-                res.send(result)
+            //return from the function if email doesnot match
+            if (queryEmail !== tokenEmail) {
+                return res.status(403).send({ message: 'Forbidden access' })
             }
+
+            let query = {} //send all data
+            if (queryEmail) {
+                query.email = queryEmail
+            }
+
+            const result = await bookingCollection.find(query).toArray()
+            res.send(result)
+
         })
 
         app.delete('/api/v1/user/cancel-booking/:bookingId', async (req, res) => {
