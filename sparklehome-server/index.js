@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
     origin: 'http://localhost:5173',
-    credendials: true
+    credentials: true
 })
 )
 
@@ -64,7 +64,7 @@ async function run() {
         app.get('/', (req, res) => {
             res.send('SparkleHome is running !!!')
         })
-        app.get('/api/v1/services', gateman, async (req, res) => {
+        app.get('/api/v1/services', async (req, res) => {
             const cursor = serviceCollection.find()
             const result = await cursor.toArray()
             res.send(result)
@@ -108,7 +108,7 @@ async function run() {
             const token = jwt.sign(user, secret, { expiresIn: 60 * 60 })
             res.cookie('token', token, {
                 httpOnly: true,
-                secure: false,
+                secure: true,
                 sameSite: 'none'
             }).send({ success: true })
         })

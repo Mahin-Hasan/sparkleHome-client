@@ -8,6 +8,7 @@ import AdminLayout from "../components/layout/AdminLayout";
 import AddService from "../page/AddService";
 import Home from "../page/Home";
 import PrivateRoute from "./PrivateRoute";
+import Services from "../page/Services";
 
 
 const routes = createBrowserRouter([
@@ -27,23 +28,27 @@ const routes = createBrowserRouter([
                 path: 'contact',
                 element: <Contact />
             },
+            {
+                path: 'services',
+                element: <Services />
+            },
         ],
     },
     {
         path: '/login',
-        element: <Login/>
+        element: <Login />
     },
     {
         path: '/register',
-        element: <Register/>
+        element: <Register />
     },
     {
         path: '/admin',
-        element: <AdminLayout/>,
+        element: <AdminLayout />,
         children: [
             {
                 index: true,
-                element: <AddService/>
+                element: <AddService />
             },
         ],
     },

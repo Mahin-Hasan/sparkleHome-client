@@ -9,6 +9,7 @@ const NavbarMenu = () => {
             {/* Navbar menu content here */}
             <NavLink to='/about' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>About</NavLink>
             <NavLink to='/contact' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Contact</NavLink>
+            <NavLink to='/services' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Services</NavLink>
             {
                 user?.email
                     ?
@@ -20,6 +21,7 @@ const NavbarMenu = () => {
                         <NavLink to='/login' className={({ isActive }) => isActive ? "btn btn-info text-white font-semibold btn-sm" : "btn btn-ghost text-white font-semibold btn-sm"}>Login</NavLink>
                     )
             }
+            
         </div>
     );
 };
