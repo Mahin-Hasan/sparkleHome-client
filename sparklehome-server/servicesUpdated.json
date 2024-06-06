@@ -1,0 +1,146 @@
+[
+    {
+        "name": "Sparkle Home Cleaning",
+        "description": "Professional home cleaning services for a spotless living space.",
+        "image": "https://example.com/images/sparkle1.jpg",
+        "features": [
+            "Thorough cleaning of every nook and cranny to ensure a spotless home.",
+            "Using environmentally safe products to protect your home and the planet.",
+            "Tailored cleaning packages to meet your specific needs and preferences."
+        ],
+        "price": 100,
+        "category": "Home Cleaning"
+    },
+    {
+        "name": "FreshNest Cleaners",
+        "description": "Reliable cleaning services to keep your nest fresh and tidy.",
+        "image": "https://example.com/images/freshnest1.jpg",
+        "features": [
+            "Regular cleaning services to maintain a consistently clean home.",
+            "Safe cleaning products for households with pets.",
+            "Comprehensive cleaning services for moving in or out of a home."
+        ],
+        "price": 80,
+        "category": "Regular Cleaning"
+    },
+    {
+        "name": "Gleam & Glow Cleaning",
+        "description": "Make your home gleam and glow with our expert cleaning solutions.",
+        "image": "https://example.com/images/gleam1.jpg",
+        "features": [
+            "Professional cleaning of all windows for a clear and streak-free shine.",
+            "Detailed cleaning of kitchen and laundry appliances.",
+            "Helping you declutter and organize your living spaces."
+        ],
+        "price": 90,
+        "category": "Deep Cleaning"
+    },
+    {
+        "name": "Pristine House Care",
+        "description": "Ensuring your home stays pristine and beautiful with thorough cleaning.",
+        "image": "https://example.com/images/pristine1.jpg",
+        "features": [
+            "A deep clean to refresh your home for the new season.",
+            "Professional carpet cleaning to remove stains and allergens.",
+            "Convenient laundry services to keep your clothes fresh and clean."
+        ],
+        "price": 110,
+        "category": "Seasonal Cleaning"
+    },
+    {
+        "name": "NeatNest Cleaners",
+        "description": "Your home deserves the best - trust NeatNest for top-notch cleaning.",
+        "image": "https://example.com/images/neatnest1.jpg",
+        "features": [
+            "Comprehensive cleaning of kitchen surfaces, appliances, and floors.",
+            "Thorough sanitization of all bathroom fixtures and surfaces.",
+            "Detailed dusting and polishing of furniture and decor."
+        ],
+        "price": 85,
+        "category": "Detailed Cleaning"
+    },
+    {
+        "name": "PureHome Clean",
+        "description": "PureHome offers pure cleaning solutions for a healthier living environment.",
+        "image": "https://example.com/images/purehome1.jpg",
+        "features": [
+            "Specialized cleaning services for Airbnb hosts.",
+            "Detailed cleaning to remove construction dust and debris.",
+            "Eco-friendly cleaning methods for a sustainable home."
+        ],
+        "price": 95,
+        "category": "Specialized Cleaning"
+    },
+    {
+        "name": "ShineBright Cleaners",
+        "description": "Brightening up homes with meticulous cleaning services.",
+        "image": "https://example.com/images/shinebright1.jpg",
+        "features": [
+            "Top-to-bottom cleaning for a fresh and welcoming home.",
+            "Use of non-toxic cleaning products for safety.",
+            "Flexible scheduling to fit your busy lifestyle."
+        ],
+        "price": 105,
+        "category": "Home Cleaning"
+    },
+    {
+        "name": "EcoClean Solutions",
+        "description": "Green cleaning services for a healthier home environment.",
+        "image": "https://example.com/images/ecoclean1.jpg",
+        "features": [
+            "Environmentally friendly cleaning products.",
+            "Specialized cleaning for allergy sufferers.",
+            "Sustainable practices to reduce waste."
+        ],
+        "price": 90,
+        "category": "Eco-Friendly Cleaning"
+    },
+    {
+        "name": "Spotless Spaces",
+        "description": "Transform your space into a spotless haven.",
+        "image": "https://example.com/images/spotless1.jpg",
+        "features": [
+            "Thorough dusting and vacuuming of all rooms.",
+            "Detailed cleaning of kitchen and bathroom areas.",
+            "Customizable cleaning plans to suit your needs."
+        ],
+        "price": 95,
+        "category": "Detailed Cleaning"
+    },
+    {
+        "name": "Bright Home Services",
+        "description": "Making homes shine with professional cleaning services.",
+        "image": "https://example.com/images/brighthome1.jpg",
+        "features": [
+            "Deep cleaning of all living spaces.",
+            "Stain removal and carpet cleaning.",
+            "Flexible packages for regular and one-time services."
+        ],
+        "price": 100,
+        "category": "Deep Cleaning"
+    },
+    {
+        "name": "PerfectClean",
+        "description": "Achieving perfect cleanliness with expert cleaning solutions.",
+        "image": "https://example.com/images/perfectclean1.jpg",
+        "features": [
+            "High-quality cleaning for a perfect finish.",
+            "Attention to detail in every task.",
+            "Personalized cleaning schedules."
+        ],
+        "price": 115,
+        "category": "Premium Cleaning"
+    },
+    {
+        "name": "QuickClean Services",
+        "description": "Efficient cleaning services to quickly refresh your home.",
+        "image": "https://example.com/images/quickclean1.jpg",
+        "features": [
+            "Speedy cleaning services without compromising quality.",
+            "Last-minute cleaning appointments available.",
+            "Perfect for busy households."
+        ],
+        "price": 85,
+        "category": "Quick Cleaning"
+    }
+]

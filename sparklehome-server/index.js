@@ -64,8 +64,32 @@ async function run() {
         app.get('/', (req, res) => {
             res.send('SparkleHome is running !!!')
         })
+        // Filtering Api Format
+        //Filtering based on category
+        // http://localhost:3000/api/v1/services        #scenerio 1
+        // http://localhost:3000/api/v1/services?category=Home Cleaning   #secnerio 2
+
+        //sorting based on price
+        // http://localhost:3000/api/v1/services        #scenerio 1
+        // http://localhost:3000/api/v1/services?sortField=price&sortOrder=desc   #secnerio 2
         app.get('/api/v1/services', async (req, res) => {
-            const cursor = serviceCollection.find()
+            let queryObj = {}
+            let sortObj = {}
+
+            const category = req.query.category
+            const sortField = req.query.sortField
+            const sortOrder = req.query.sortOrder
+
+
+            if (category) {
+                queryObj.category = category 
+            }
+            if (sortField && sortOrder) {
+                sortObj[sortField] = sortOrder //it will create obj like {pirce : desc}
+            }
+
+
+            const cursor = serviceCollection.find(queryObj).sort(sortObj)
             const result = await cursor.toArray()
             res.send(result)
         })
@@ -76,7 +100,7 @@ async function run() {
             res.send(result)
         })
 
-        
+
         //user specific bookings
         app.get('/api/v1/user/bookings', gateman, async (req, res) => {
             const queryEmail = req.query.email;
