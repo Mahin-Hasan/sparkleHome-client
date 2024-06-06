@@ -75,6 +75,8 @@ async function run() {
             const result = await bookingCollection.insertOne(booking)
             res.send(result)
         })
+
+        
         //user specific bookings
         app.get('/api/v1/user/bookings', gateman, async (req, res) => {
             const queryEmail = req.query.email;
