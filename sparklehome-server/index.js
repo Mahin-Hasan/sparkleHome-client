@@ -109,6 +109,14 @@ async function run() {
             })
         })
 
+        app.get('/api/v1/services/:serviceId', async (req, res) => {
+            const id = req.params.serviceId
+            const query = { _id: new ObjectId(id) }
+            const result = await serviceCollection.findOne(query)
+            res.send(result)
+        })
+
+
         app.post('/api/v1/user/create-bookings', async (req, res) => {
             const booking = req.body;
             const result = await bookingCollection.insertOne(booking)
@@ -135,12 +143,14 @@ async function run() {
 
         })
 
+
         app.delete('/api/v1/user/cancel-booking/:bookingId', async (req, res) => {
             const id = req.params.bookingId
             const query = { _id: new ObjectId(id) }
             const result = await bookingCollection.deleteOne(query)
             res.send(result)
         })
+
 
         app.post('/api/v1/auth/access-token', async (req, res) => {
             //Creating token and send to client
