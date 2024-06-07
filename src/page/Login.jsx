@@ -7,7 +7,7 @@ import useAxios from "../hooks/useAxios";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuth();
+    const { login, logout } = useAuth();
     const navigate = useNavigate();
     const axios = useAxios();
 
@@ -18,10 +18,17 @@ const Login = () => {
 
         try {
             const user = await login(email, password);
+            const res = await axios.post('/auth/access-token', { email: user.user.email })
+
+            if (res.data.success) { //logging out the user if token is not generated || see main course video where this issue is directly handled in the auth provider
+                toast.success('User Logged in', { id: toastId })
+                navigate('/')
+
+            } else {
+                logout()
+            }
+
             console.log(user);
-            axios.post('/auth/access-token', { email: user.user.email })
-            toast.success('User Logged in', { id: toastId })
-            navigate('/')
         } catch (err) {
             toast.error(err.message, { id: toastId })
         }

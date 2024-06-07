@@ -70,8 +70,12 @@ async function run() {
         // http://localhost:3000/api/v1/services?category=Home Cleaning   #secnerio 2
 
         //sorting based on price
-        // http://localhost:3000/api/v1/services        #scenerio 1
-        // http://localhost:3000/api/v1/services?sortField=price&sortOrder=desc   #secnerio 2
+        // http://localhost:3000/api/v1/services        #scenerio 3
+        // http://localhost:3000/api/v1/services?sortField=price&sortOrder=desc   #secnerio 4
+
+        //pagination 
+        // http://localhost:3000/api/v1/services        #scenerio 3
+        // http://localhost:3000/api/v1/services?page=1&limit=10  #secnerio 4
         app.get('/api/v1/services', async (req, res) => {
             let queryObj = {}
             let sortObj = {}
@@ -80,18 +84,29 @@ async function run() {
             const sortField = req.query.sortField
             const sortOrder = req.query.sortOrder
 
+            //pagination
+            const page = Number(req.query.page) //parsed using number constructor | can aslo be done using parseInt
+            const limit = Number(req.query.limit)
+            const skip = (page - 1) * limit //simple formula for performing pagination 
+
 
             if (category) {
-                queryObj.category = category 
+                queryObj.category = category
             }
             if (sortField && sortOrder) {
                 sortObj[sortField] = sortOrder //it will create obj like {pirce : desc}
             }
 
-
-            const cursor = serviceCollection.find(queryObj).sort(sortObj)
+            const cursor = serviceCollection.find(queryObj).skip(skip).limit(limit).sort(sortObj)
             const result = await cursor.toArray()
-            res.send(result)
+
+            //count total data and send to front end
+            const total = await serviceCollection.countDocuments()
+
+            res.send({
+                total,
+                result
+            })
         })
 
         app.post('/api/v1/user/create-bookings', async (req, res) => {

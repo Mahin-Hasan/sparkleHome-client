@@ -30,7 +30,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'services',
-                element: <Services />
+                element: <PrivateRoute><Services /></PrivateRoute>
             },
         ],
     },
