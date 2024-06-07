@@ -22,13 +22,16 @@ const Services = () => {
     const axios = useAxios();
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
+    const [page, setPage] = useState(1)
+    const limit = 5;// set total no of items that is displayed in the ui
+
     const getServices = async () => {
-        const res = await axios.get(`/services?sortField=price&sortOrder=${price}&category=${category}`);
+        const res = await axios.get(`/services?sortField=price&sortOrder=${price}&category=${category}&page=${page}&limit=${limit}`);
         return res;
     }
     console.log(price, category);
     const { data: services, isLoading, isError, error } = useQuery({
-        queryKey: ['service', price, category],//price is dependency array and need to be provided to tanstack recall the api again
+        queryKey: ['service', price, category,page],//price is dependency array and need to be provided to tanstack recall the api again
         queryFn: getServices,
     })
     // console.log(services?.data.result)
@@ -36,6 +39,24 @@ const Services = () => {
     // if (isLoading) {
     //     return <span className="loading loading-spinner text-info"></span>
     // }
+
+    //functions for pagination
+    const handlePrev = () => {
+        if (page > 1) {
+            setPage(page - 1)
+        }
+    }
+    const handleNext = () => {
+        if (page < totalPage) {
+            setPage(page + 1)
+        }
+    }
+
+    const totalPage = Math.ceil(services?.data?.total / limit);
+    console.log(totalPage);
+
+
+    console.log(page);
     if (isError) {
         return <p>Something went wrong: {error}</p>
     }
@@ -102,16 +123,44 @@ const Services = () => {
                     }
                 </div>
             </Container>
-            <Container className="mb-64 flex justify-end">
-                <div className='join border-2 border-info'>
-                    <button className='join-item btn btn-ghost'>⬅️</button>
-                    <button className='join-item btn btn-ghost'>1</button>
-                    <button className='join-item btn btn-ghost'>2</button>
-                    <button className='join-item btn btn-ghost'>3</button>
-                    <button className='join-item btn btn-ghost'>4</button>
-                    <button className='join-item btn btn-ghost'>➡️</button>
-                </div>
-            </Container>
+            <Container>
+                <div className='mb-64 mt-10 flex justify-end'>
+                    {
+                        isLoading ? (<span className="loading loading-spinner text-info"></span>) : (
+
+                            <div className='join border-2 border-info'>
+                                <button onClick={handlePrev} className='join-item btn btn-ghost'>⬅️</button>
+                                {
+                                    Array(totalPage).fill(0).map((item, index) => {
+                                        const pageNumber = index + 1;
+                                        return (
+                                            <button
+                                                key={pageNumber}
+                                                onClick={() => setPage(pageNumber)}
+                                                className={`${pageNumber === page
+                                                    ? 'join-item btn btn-info'
+                                                    : 'join-item btn btn-ghost'
+                                                    }`}>{pageNumber}</button>
+                                        )
+                                    })
+                                }
+                                <button onClick={handleNext} className='join-item btn btn-ghost'>➡️</button>
+                            </div>
+                        )}
+
+
+
+                    {/* static method */}
+                    {/* <div className='join border-2 border-info'>
+                        <button onClick={handlePrev} className='join-item btn btn-ghost'>⬅️</button>
+                        <button onClick={() => setPage(1)} className='join-item btn btn-ghost'>1</button>
+                        <button onClick={() => setPage(2)} className='join-item btn btn-ghost'>2</button>
+                        <button onClick={() => setPage(3)} className='join-item btn btn-ghost'>3</button>
+                        <button onClick={() => setPage(4)} className='join-item btn btn-ghost'>4</button>
+                        <button onClick={handleNext} className='join-item btn btn-ghost'>➡️</button>
+                    </div> */}
+                </div >
+            </Container >
         </>
     );
 };
