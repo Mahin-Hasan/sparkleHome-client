@@ -6,24 +6,36 @@ import Header from '../components/ui/Header';
 import useAxios from '../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 
+const categories = [
+    "Home Cleaning",
+    "Regular Cleaning",
+    "Deep Cleaning",
+    "Seasonal Cleaning",
+    "Detailed Cleaning",
+    "Specialized Cleaning",
+    "Eco-Friendly Cleaning",
+    "Premium Cleaning",
+    "Quick Cleaning"
+]
+
 const Services = () => {
     const axios = useAxios();
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
     const getServices = async () => {
-        const res = await axios.get(`/services?sortField=price&sortOrder=${price}`);
+        const res = await axios.get(`/services?sortField=price&sortOrder=${price}&category=${category}`);
         return res;
     }
     console.log(price, category);
     const { data: services, isLoading, isError, error } = useQuery({
-        queryKey: ['service', price],//price is dependency array and need to be provided to tanstack recall the api again
+        queryKey: ['service', price, category],//price is dependency array and need to be provided to tanstack recall the api again
         queryFn: getServices,
     })
     // console.log(services?.data.result)
     // const categories = services?.data?.result
-    if (isLoading) {
-        return <span className="loading loading-spinner text-info"></span>
-    }
+    // if (isLoading) {
+    //     return <span className="loading loading-spinner text-info"></span>
+    // }
     if (isError) {
         return <p>Something went wrong: {error}</p>
     }
@@ -50,13 +62,19 @@ const Services = () => {
                             onChange={(e) => setCategory(e.target.value)}
                         >
                             <option disabled selected>Choose one</option>
-                            {/* {
-                                categories.map((item) => (
-                                    <option key={item._id} value={item}>
-                                        {item}
-                                    </option>
-                                ))
-                            } */}
+                            {
+                                isLoading ? (
+                                    <span className="loading loading-spinner text-info"></span>
+                                ) : (
+                                    categories.map((item) => (
+                                        <option key={item._id} value={item}>
+                                            {item}
+                                        </option>
+                                    ))
+                                )
+                            }
+
+
                         </select>
                     </div>
                     <div className='form-control'>
