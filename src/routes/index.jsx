@@ -10,6 +10,7 @@ import Home from "../page/Home";
 import PrivateRoute from "./PrivateRoute";
 import Services from "../page/Services";
 import Bookings from "../page/Bookings";
+import TrackOrder from "../page/TrackOrder";
 
 
 const routes = createBrowserRouter([
@@ -36,6 +37,10 @@ const routes = createBrowserRouter([
             {
                 path: 'booking/:id',
                 element: <Bookings />
+            },
+            {
+                path: 'trackOrder',
+                element: <TrackOrder />
             },
         ],
     },
